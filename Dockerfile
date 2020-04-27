@@ -1,6 +1,5 @@
-ARG PYTHONFULL
-ARG ALPINE_VER
-FROM $PYTHONFULL as builder
+
+FROM python:3.7.4 as builder
 
 RUN apk add --no-cache binutils
 RUN find /usr/local -name '*.so' | xargs strip -s
@@ -19,7 +18,7 @@ RUN rm -rf /usr/local/share/*
 RUN apk del binutils
 
 # The final image
-FROM alpine:$ALPINE_VER as final
+FROM alpine:3.10 as final
 
 ENV LANG C.UTF-8
 RUN apk add --no-cache libbz2 expat libffi xz-libs sqlite-libs readline ca-certificates
