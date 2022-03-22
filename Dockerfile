@@ -13,3 +13,5 @@ RUN echo "**** install Python ****" && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi
 
 RUN pip3 install --no-cache --upgrade pymsteams
+
+RUN ln -s pymsteams /usr/bin/pymsteams
