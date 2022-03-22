@@ -14,4 +14,3 @@ RUN echo "**** install Python ****" && \
 
 RUN pip3 install --no-cache --upgrade pymsteams
 
-RUN ln -s pymsteams /usr/bin/pymsteams
