@@ -1,0 +1,27 @@
+{
+  "ref": "refs/heads/main",
+  "before": "abc123",
+  "after": "def456",
+  "repository": {
+    "full_name": "echapmanFromBunnings/docker.webhook-to-ms-teams",
+    "html_url": "https://github.com/echapmanFromBunnings/docker.webhook-to-ms-teams",
+    "name": "docker.webhook-to-ms-teams"
+  },
+  "pusher": {
+    "name": "test-user",
+    "email": "test@example.com",
+    "login": "test-user",
+    "html_url": "https://github.com/test-user"
+  },
+  "commits": [
+    {
+      "id": "def4567890abcdef",
+      "message": "Update webhook integration\n\nDetails here.",
+      "url": "https://github.com/echapmanFromBunnings/docker.webhook-to-ms-teams/commit/def456",
+      "author": {
+        "name": "Test User",
+        "email": "test@example.com"
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "action": "completed",
+  "workflow_run": {
+    "name": "CI",
+    "status": "completed",
+    "conclusion": "failure",
+    "head_branch": "main",
+    "html_url": "https://github.com/echapmanFromBunnings/docker.webhook-to-ms-teams/actions/runs/12345"
+  },
+  "repository": {
+    "full_name": "echapmanFromBunnings/docker.webhook-to-ms-teams",
+    "html_url": "https://github.com/echapmanFromBunnings/docker.webhook-to-ms-teams"
+  },
+  "sender": {
+    "login": "github-actions",
+    "html_url": "https://github.com/github-actions"
+  }
+}

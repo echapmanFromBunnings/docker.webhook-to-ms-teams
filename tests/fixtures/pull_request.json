@@ -1,0 +1,22 @@
+{
+  "action": "opened",
+  "number": 42,
+  "pull_request": {
+    "title": "Update Teams integration to Power Automate",
+    "state": "open",
+    "html_url": "https://github.com/echapmanFromBunnings/docker.webhook-to-ms-teams/pull/42",
+    "body": "This PR migrates the webhook sender from legacy incoming webhooks to Power Automate workflows.",
+    "user": {
+      "login": "test-user",
+      "html_url": "https://github.com/test-user"
+    }
+  },
+  "repository": {
+    "full_name": "echapmanFromBunnings/docker.webhook-to-ms-teams",
+    "html_url": "https://github.com/echapmanFromBunnings/docker.webhook-to-ms-teams"
+  },
+  "sender": {
+    "login": "test-user",
+    "html_url": "https://github.com/test-user"
+  }
+}
