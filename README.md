@@ -10,7 +10,7 @@ Lightweight Python sender that forwards GitHub webhook events to a Microsoft Tea
 | Old approach | New approach |
 | --- | --- |
 | MS Teams **Incoming Webhook** connector | MS Teams **Workflows** app → Power Automate |
-| `pymsteams` + MessageCard format | `requests` + JSON payload with a `text` field |
+| `pymsteams` + MessageCard format | `requests` + Adaptive Card JSON payload |
 | Webhook URL from channel connectors | Webhook URL from a Power Automate workflow trigger |
 
 ## Quick start (no Docker required)
@@ -51,9 +51,18 @@ python -m src
 
 Use `--dry-run` to preview the payload without sending it.
 
+### Message format
+
+By default the sender posts an **Adaptive Card** (`--format adaptive`), which is
+what the Teams workflow's "Post card in a chat or channel" action requires. The
+payload is a `type: message` envelope containing an Adaptive Card whose content
+has `"type": "AdaptiveCard"`. If your workflow instead posts plain text, use
+`--format text` to send a simple `{"text": "..."}` body. Use `--format raw` to
+forward the unmodified GitHub event JSON.
+
 ## Supported GitHub events
 
-The formatter produces a `text` field for these events:
+The formatter builds an Adaptive Card for these events:
 
 - `push`
 - `pull_request`
@@ -61,7 +70,7 @@ The formatter produces a `text` field for these events:
 - `workflow_run`
 - `release`
 
-Unknown events are sent as a fallback payload with the raw event JSON.
+Unknown events are sent as a fallback card containing the raw event JSON.
 
 ## Usage in GitHub Actions
 
@@ -80,14 +89,26 @@ See `.github/workflows/example.yml`. Add your workflow URL as a repository secre
 
 No Docker is needed for tests. A built-in mock HTTP server captures outbound requests.
 
-```bash
-pytest
+On Windows, run everything with one PowerShell script:
+
+```powershell
+.\test.ps1                 # default: push event
+.\test.ps1 -Event workflow_run -Fixture workflow_run
 ```
 
-Or run the local harness directly:
+Or manually:
 
 ```bash
+pip install -r requirements-dev.txt
+pytest
 python -m tests.local_send --event push --fixture push
+```
+
+To send a real event from PowerShell (set `WORKFLOW_WEBHOOK_URL` first):
+
+```powershell
+.\send.ps1 -Event push -Fixture push
+.\send.ps1 -Event pull_request -Fixture pull_request -DryRun
 ```
 
 ## Building and running with Docker

@@ -37,9 +37,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--payload", help="Path to GitHub event JSON (or set GITHUB_EVENT_PATH)")
     parser.add_argument(
         "--format",
-        choices=["text", "adaptive", "raw"],
-        default="text",
-        help="Message format to send (default: text)",
+        choices=["adaptive", "text", "raw"],
+        default="adaptive",
+        help="Message format: adaptive (Adaptive Card, default), text (plain), or raw",
     )
     parser.add_argument("--timeout", type=int, default=30, help="HTTP request timeout in seconds")
     parser.add_argument("--dry-run", action="store_true", help="Print payload instead of sending")
@@ -65,7 +65,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.format == "raw":
         payload = event
     else:
-        payload = format_event(event_name, event)
+        payload = format_event(event_name, event, fmt=args.format)
 
     if args.dry_run:
         print(json.dumps(payload, indent=2))
